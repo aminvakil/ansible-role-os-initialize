@@ -11,9 +11,11 @@ None.
 Role Variables
 --------------
 
-`node_exporter_version` which currently is the latest version (1.0.1).
+`hostname` which will set hostname if the vm has not been set up by cloud-init.
 
-`node_exporter_interface` specifies the interface(s) node-exporter will listen on.
+`unnecessary_packages` which are some packages which I have found them unnecessary over time.
+
+`unnecessary_services` which are some services which I have found them unnecessary over time in my environments.
 
 Dependencies
 ------------

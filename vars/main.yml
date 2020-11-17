@@ -1,0 +1,19 @@
+---
+hostname: ansibletest
+unnecessary_packages:
+  - cock*
+  - sssd*
+  - geolite*
+  - gssproxy
+  - hardlink
+  - hwdata
+  - kbd*
+  - microcode*
+  - oddjob*
+  - psmisc
+  - pinentry
+  - kexec-tools
+  - firewalld*
+  - iwl*firmware
+unnecessary_services:
+  - kdump

@@ -2,19 +2,9 @@
   timezone:
     name: Asia/Tehran
 
-- name: Check if chronyd is installed
-  dnf:
-    list: chrony
-  register: chrony_installed
-
-- name: Get the rpm package facts
-  package_facts:
-    manager: "auto"
-
 - name: Install chrony
-  dnf:
+  yum:
     name: chrony
-  when: ansible_facts.packages.chrony is undefined
 
 - name: Enable chrony service
   systemd:
@@ -70,17 +60,17 @@
   when: '"Disabled" in sestatus.stdout'
 
 - name: Install python3-libselinux
-  dnf:
+  yum:
     name: python3-libselinux
 
 - name: Removing unneccessary packages
-  dnf:
+  yum:
     name: "{{ unnecessary_packages }}"
     state: absent
     autoremove: yes
 
 - name: Update every package
-  dnf:
+  yum:
     name: '*'
     state: latest
 
@@ -95,7 +85,7 @@
   when: kernel_update.stdout.find("reboot") != -1
 
 - name: Autoremove unneeded packages installed as dependencies
-  dnf:
+  yum:
     autoremove: yes
 
 - name: Stop and disable unnecessary services
@@ -106,7 +96,7 @@
   with_items: "{{ unnecessary_services }} | default([])"
 
 - name: Install python3-libselinux
-  dnf:
+  yum:
     name: python3-libselinux
 
 - name: Set vm.swappiness to 10 percent

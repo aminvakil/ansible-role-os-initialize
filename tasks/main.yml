@@ -11,7 +11,6 @@
     name: chronyd
     state: started
     enabled: yes
-  when: ansible_facts.packages.chrony is undefined
 
 - name: Check if cloud-init has configured system
   stat:

@@ -40,28 +40,30 @@
         state: present
   when: not cloud_init_configured.stat.exists and (ansible_facts.virtualization_type not in ('docker', 'lxc', 'container'))
 
-- name: Check SELinux status
-  command: getenforce
-  register: sestatus
-  changed_when: false
+- block:
+    - name: Check SELinux status
+      command: getenforce
+      register: sestatus
+      changed_when: false
 
-- name: Enable SELinux
-  selinux:
-    policy: targeted
-    state: enforcing
-  when: '"Disabled" in sestatus.stdout'
+    - name: Enable SELinux
+      selinux:
+        policy: targeted
+        state: enforcing
+      when: '"Disabled" in sestatus.stdout'
 
-- name: Relabel SELinux contexts on reboot
-  file:
-    dest: /.autorelabel
-    state: touch
-    mode: 0644
-  when: '"Disabled" in sestatus.stdout'
+    - name: Relabel SELinux contexts on reboot
+      file:
+        dest: /.autorelabel
+        state: touch
+        mode: 0644
+      when: '"Disabled" in sestatus.stdout'
 
-- name: Reboot and wait for server to come up
-  reboot:
-    reboot_timeout: 600
-  when: '"Disabled" in sestatus.stdout'
+    - name: Reboot and wait for server to come up
+      reboot:
+        reboot_timeout: 600
+      when: '"Disabled" in sestatus.stdout'
+  when: ansible_facts.virtualization_type not in ('docker', 'lxc', 'container')
 
 - name: Removing unneccessary packages
   yum:
@@ -95,16 +97,17 @@
     enabled: no
   with_items: "{{ unnecessary_services }} | default([])"
 
+- block:
+    - name: Install python3-libselinux
+      yum:
+        name: python3-libselinux
+      when: ansible_distribution_major_version == '8'
 
-- name: Install python3-libselinux
-  yum:
-    name: python3-libselinux
-  when: ansible_distribution_major_version == '8'
-
-- name: Install libselinux-python
-  yum:
-    name: libselinux-python
-  when: ansible_distribution_major_version == '7'
+    - name: Install libselinux-python
+      yum:
+        name: libselinux-python
+      when: ansible_distribution_major_version == '7'
+  when: ansible_facts.virtualization_type not in ('docker', 'lxc', 'container')
 
 - name: Set vm.swappiness to 10 percent
   sysctl:

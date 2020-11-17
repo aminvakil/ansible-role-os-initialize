@@ -32,4 +32,4 @@ centos8_unnecessary_packages:
   - firewalld*
   - iwl*firmware
 unnecessary_services:
-  - kdump
+#  - kdump

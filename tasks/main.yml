@@ -38,7 +38,7 @@
         regexp: '^127\.0\.0\.1[ \t]+localhost'
         line: '127.0.0.1 localhost {{ hostname }}'
         state: present
-  when: not cloud_init_configured.stat.exists
+  when: not cloud_init_configured.stat.exists and (ansible_facts.virtualization_type not in ('docker', 'lxc', 'container'))
 
 - name: Check SELinux status
   command: getenforce

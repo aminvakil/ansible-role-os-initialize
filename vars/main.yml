@@ -14,7 +14,7 @@ centos7_unnecessary_packages:
   - xfs-progs*
   - postfix
   - firewalld*
-  - *rpc*
+  - '*rpc*'
   - postfix
 centos8_unnecessary_packages:
   - cock*

@@ -23,9 +23,6 @@
     enabled: yes
   when: ansible_facts.packages.chrony is undefined
 
-- name: Enable ntp
-  command: /usr/bin/timedatectl set-ntp 1
-
 - name: Check if cloud-init has configured system
   stat:
     path: /etc/cloud/cloud.cfg
@@ -62,8 +59,9 @@
 
 - name: Relabel SELinux contexts on reboot
   file:
-    dest=/.autorelabel
-    state=touch
+    dest: /.autorelabel
+    state: touch
+    mode: 0644
   when: '"Disabled" in sestatus.stdout'
 
 - name: Reboot and wait for server to come up
@@ -87,8 +85,9 @@
     state: latest
 
 - name: Check if kernel has been updated
-  shell: if [ $(rpm -q kernel|tail -n 1) != kernel-$(uname -r) ]; then echo 'reboot'; else echo 'no'; fi
+  command: if [ $(rpm -q kernel|tail -n 1) != kernel-$(uname -r) ]; then echo 'reboot'; else echo 'no'; fi
   register: kernel_update
+  changed_when: false
 
 - name: Reboot to match new kernel
   reboot:

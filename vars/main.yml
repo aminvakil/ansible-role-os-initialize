@@ -1,6 +1,22 @@
 ---
 hostname: ansibletest
-unnecessary_packages:
+centos7_unnecessary_packages:
+  - NetworkManager*
+  - aic94xx-firmware*
+  - alsa-*
+  - iwl*firmware
+  - ql*firmware
+  - ivtv*
+  - plymouth*
+  - kexec-tools
+  - dracut-network
+  - btrfs-progs*
+  - xfs-progs*
+  - postfix
+  - firewalld*
+  - *rpc*
+  - postfix
+centos8_unnecessary_packages:
   - cock*
   - sssd*
   - geolite*

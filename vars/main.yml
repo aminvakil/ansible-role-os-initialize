@@ -1,4 +1,5 @@
 ---
+timezone: Asia/Tehran
 hostname: ansibletest
 centos7_unnecessary_packages:
   - NetworkManager*

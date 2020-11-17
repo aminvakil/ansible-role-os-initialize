@@ -1,6 +1,7 @@
-- name: Set timezone to Asia/Tehran
+---
+- name: Set timezone to {{ timezone }}
   timezone:
-    name: Asia/Tehran
+    name: "{{ timezone }}"
 
 - name: Install chrony
   yum:

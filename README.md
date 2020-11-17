@@ -11,6 +11,8 @@ None.
 Role Variables
 --------------
 
+`timezone` to set timezone
+
 `hostname` which will set hostname if the vm has not been set up by cloud-init.
 
 `unnecessary_packages` which are some packages which I have found them unnecessary over time.

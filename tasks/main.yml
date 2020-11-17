@@ -103,7 +103,7 @@
     name: "{{ item }}"
     state: stopped
     enabled: no
-  loop: "{{ unnecessary_services | default([])}}"
+  loop: "{{ unnecessary_services | default([]) }}"
 
 - block:
     - name: Install python3-libselinux

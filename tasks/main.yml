@@ -10,7 +10,6 @@
 - name: Enable chrony service
   systemd:
     name: chronyd
-    state: started
     enabled: yes
 
 - name: Check if cloud-init has configured system

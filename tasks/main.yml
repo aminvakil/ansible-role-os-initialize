@@ -65,6 +65,11 @@
       when: '"Disabled" in sestatus.stdout'
   when: ansible_facts.virtualization_type not in ('docker', 'lxc', 'container')
 
+- name: Update every package
+  yum:
+    name: '*'
+    state: latest
+
 - name: Removing CentOS 8 unneccessary packages
   yum:
     name: "{{ centos8_unnecessary_packages }}"
@@ -78,11 +83,6 @@
     state: absent
     autoremove: yes
   when: ansible_distribution_major_version == '7'
-
-- name: Update every package
-  yum:
-    name: '*'
-    state: latest
 
 - name: Check if kernel has been updated
   shell: if [ $(rpm -q kernel|tail -n 1) != kernel-$(uname -r) ]; then echo 'reboot'; else echo 'no'; fi

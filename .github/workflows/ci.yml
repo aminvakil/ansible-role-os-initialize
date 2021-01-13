@@ -67,7 +67,7 @@ jobs:
           MOLECULE_DISTRO: ${{ matrix.distro }}
 
   deploy:
-    if: ${{ github.ref == 'refs/heads/main' }}
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     needs: [lint, molecule]
     name: Push to Galaxy
     runs-on: ubuntu-latest

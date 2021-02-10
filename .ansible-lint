@@ -1,3 +1,5 @@
 skip_list:
   - '403'  # Package installs should not use latest         
   - '306'  # Shells that use pipes should set the pipefail option
+warn_list:
+  - yaml

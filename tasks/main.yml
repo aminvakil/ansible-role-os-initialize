@@ -1,4 +1,8 @@
 ---
-- name: Include centos tasks
+- name: Include CentOS tasks
   include_tasks: centos.yml
   when: ansible_distribution == 'CentOS'
+
+- name: Include Debian tasks
+  include_tasks: debian.yml
+  when: ansible_distribution == 'Debian'

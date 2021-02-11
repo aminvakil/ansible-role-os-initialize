@@ -32,5 +32,47 @@ centos8_unnecessary_packages:
   - kexec-tools
   - firewalld*
   - iwl*firmware
+debian10_unnecessary_packages:
+  - cryptsetup*
+  - amd64-microcode
+  - apparmor
+  - aptitude
+  - bind9-host
+  - btrfs-progs
+  - ca-certificates
+  - console-setup
+  - cpufrequtils
+  - discover
+  - dosfstools
+  - efibootmgr
+  - eject
+  - firmware-bnx2x
+  - gdisk
+  - geoip-database
+  - gnupg
+  - haveged
+  - installation-report
+  - iputils-clockdiff
+  - iputils-tracepath
+  - irqbalance
+  - keyboard-configuration
+  - laptop-detect
+  - mdadm
+  - ntpdate
+  - pciutils
+  - perl
+  - perl-modules-5.28
+  - rename
+  - rsync
+  - sgml-base
+  - shared-mime-info
+  - task-english
+  - task-ssh-server
+  - usb.ids
+  - usbutils
+  - vim
+  - xdg-user-dirs
+  - xfsprogs
+  - xml-core
 unnecessary_services:
 #  - kdump

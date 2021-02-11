@@ -60,6 +60,10 @@
   apt:
     autoremove: yes
 
+- name: Install necessary packages to use sysctl
+  apt:
+    name: procps
+
 - name: Set vm.swappiness to 10 percent
   sysctl:
     name: vm.swappiness

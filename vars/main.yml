@@ -46,7 +46,6 @@ debian10_unnecessary_packages:
   - efibootmgr
   - eject
   - firmware-bnx2x
-  - gdisk
   - geoip-database
   - haveged
   - installation-report

@@ -48,7 +48,6 @@ debian10_unnecessary_packages:
   - firmware-bnx2x
   - gdisk
   - geoip-database
-  - gnupg
   - haveged
   - installation-report
   - iputils-clockdiff

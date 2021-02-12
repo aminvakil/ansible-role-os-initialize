@@ -38,6 +38,13 @@
     name: '*'
     state: latest
 
+- name: Install qemu-guest-agent
+  apt:
+    name: qemu-guest-agent
+  register: qa_installation
+  when: ansible_facts.virtualization_type == "kvm" and qemu_guest_agent == true
+  notify: reboot
+
 - name: Removing Debian 10 unneccessary packages
   apt:
     name: "{{ debian10_unnecessary_packages }}"

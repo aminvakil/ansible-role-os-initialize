@@ -1,2 +1,4 @@
 ---
-# handlers file for ansible-os-prepare
+# handlers file for ansible-os-initialize
+- name: reboot
+  reboot:

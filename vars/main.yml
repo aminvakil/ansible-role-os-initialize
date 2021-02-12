@@ -1,7 +1,6 @@
 ---
 timezone: Asia/Tehran
 hostname: ansibletest
-qemu_guest_agent: false
 centos7_unnecessary_packages:
   - NetworkManager*
   - aic94xx-firmware*

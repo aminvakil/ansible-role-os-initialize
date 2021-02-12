@@ -1,2 +1,3 @@
 ---
-# defaults file for ansible-os-prepare
+# defaults file for ansible-os-initialize
+qemu_guest_agent: false

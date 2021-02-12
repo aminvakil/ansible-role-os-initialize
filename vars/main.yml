@@ -39,7 +39,6 @@ debian10_unnecessary_packages:
   - aptitude
   - bind9-host
   - btrfs-progs
-  - ca-certificates
   - console-setup
   - cpufrequtils
   - discover

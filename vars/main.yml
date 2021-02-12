@@ -69,7 +69,6 @@ debian10_unnecessary_packages:
   - task-ssh-server
   - usb.ids
   - usbutils
-  - vim
   - xdg-user-dirs
   - xfsprogs
   - xml-core

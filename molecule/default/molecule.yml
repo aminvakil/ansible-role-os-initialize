@@ -5,7 +5,7 @@ driver:
   name: docker
 platforms:
   - name: instance
-    image: "quay.io/aminvakil/docker-${MOLECULE_DISTRO}-ansible:latest"
+    image: "quay.io/aminvakil/${MOLECULE_DISTRO}-systemd:latest"
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
     privileged: true

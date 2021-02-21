@@ -72,10 +72,12 @@
 - name: Autoremove unneeded packages installed as dependencies
   apt:
     autoremove: yes
+    purge: yes
 
 - name: Install necessary packages to use sysctl
   apt:
     name: procps
+    install_recommends: no
 
 - name: Set vm.swappiness to 10 percent
   sysctl:

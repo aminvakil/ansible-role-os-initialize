@@ -1,4 +1,4 @@
 ---
-# handlers file for ansible-os-initialize
+# handlers file for ansible-role-os-initialize
 - name: reboot
   reboot:

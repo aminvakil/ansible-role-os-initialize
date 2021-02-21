@@ -1,5 +1,4 @@
 ---
-# defaults file for ansible-os-initialize
 timezone: Asia/Tehran
 hostname: ansibletest
 qemu_guest_agent: false

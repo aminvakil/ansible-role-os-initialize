@@ -3,6 +3,12 @@
   community.general.timezone:
     name: "{{ timezone }}"
 
+- name: Do not install recommends and suggest by default
+  template:
+    src: templates/etc/apt/apt.conf.d/99recommend
+    dest: /etc/apt/apt.conf.d/99recommend
+    mode: 0644
+
 - name: Uninstall ntp
   apt:
     name: ntp

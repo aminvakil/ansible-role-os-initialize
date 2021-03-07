@@ -1,6 +1,6 @@
 ---
 galaxy_info:
-  author: Amin Vakil
+  author: aminvakil
   role_name: os_initialize
   description: Initialize CentOS & Debian
   license: GPL-3.0-only

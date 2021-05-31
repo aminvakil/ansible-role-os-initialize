@@ -67,7 +67,7 @@
       reboot:
         reboot_timeout: 600
       when: '"Disabled" in sestatus.stdout'
-  when: ansible_facts.virtualization_type not in ('docker', 'lxc', 'container')
+  when: ansible_facts.virtualization_type not in ('docker', 'lxc', 'container', 'VirtualPC', 'containerd')
 
 - name: Update every package
   yum:
@@ -119,7 +119,7 @@
       yum:
         name: libselinux-python
       when: ansible_distribution_major_version == '7'
-  when: ansible_facts.virtualization_type not in ('docker', 'lxc', 'container')
+  when: ansible_facts.virtualization_type not in ('docker', 'lxc', 'container', 'VirtualPC', 'containerd')
 
 - name: Set vm.swappiness to 10 percent
   sysctl:

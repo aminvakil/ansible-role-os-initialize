@@ -17,6 +17,10 @@
     path: /etc/cloud/cloud.cfg
   register: cloud_init_configured
 
+- name: print ansible_facts.virtualization_type
+  debug:
+    var: ansible_facts.virtualization_type
+
 - block:
     - name: change hostname
       hostname:

@@ -21,7 +21,6 @@ centos8_unnecessary_packages:
   - geolite*
   - gssproxy
   - hardlink
-  - hwdata
   - kbd*
   - microcode*
   - oddjob*

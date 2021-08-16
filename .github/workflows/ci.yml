@@ -46,6 +46,7 @@ jobs:
           - distro: centos8
           - distro: centos7
           - distro: debian10
+          - distro: debian11
 
     steps:
       - name: Check out the codebase.

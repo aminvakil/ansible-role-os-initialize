@@ -13,13 +13,13 @@
   apt:
     name: ntp
     state: absent
-    purge: yes
+    purge: true
 
 - name: Enable systemd-timesyncd service
   systemd:
     name: systemd-timesyncd
     state: started
-    enabled: yes
+    enabled: true
 
 - name: Check if cloud-init has configured system
   stat:
@@ -59,8 +59,8 @@
   apt:
     name: "{{ debian10_unnecessary_packages }}"
     state: absent
-    autoremove: yes
-    purge: yes
+    autoremove: true
+    purge: true
   when: ansible_distribution_major_version == '10'
 
 - name: check if reboot is required
@@ -75,13 +75,13 @@
 
 - name: Autoremove unneeded packages installed as dependencies
   apt:
-    autoremove: yes
-    purge: yes
+    autoremove: true
+    purge: true
 
 - name: Install necessary packages to use sysctl
   apt:
     name: procps
-    install_recommends: no
+    install_recommends: false
 
 - name: Set vm.swappiness to 10 percent
   sysctl:

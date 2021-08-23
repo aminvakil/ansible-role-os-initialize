@@ -10,7 +10,7 @@
 - name: Enable chrony service
   systemd:
     name: chronyd
-    enabled: yes
+    enabled: true
 
 - name: Check if cloud-init has configured system
   stat:
@@ -78,14 +78,14 @@
   yum:
     name: "{{ centos8_unnecessary_packages }}"
     state: absent
-    autoremove: yes
+    autoremove: true
   when: ansible_distribution_major_version == '8'
 
 - name: Removing CentOS 7 unneccessary packages
   yum:
     name: "{{ centos7_unnecessary_packages }}"
     state: absent
-    autoremove: yes
+    autoremove: true
   when: ansible_distribution_major_version == '7'
 
 - name: Check if kernel has been updated
@@ -100,13 +100,13 @@
 
 - name: Autoremove unneeded packages installed as dependencies
   yum:
-    autoremove: yes
+    autoremove: true
 
 - name: Stop and disable unnecessary services
   systemd:
     name: "{{ item }}"
     state: stopped
-    enabled: no
+    enabled: false
   loop: "{{ unnecessary_services | default([], true) }}"
 
 - block:

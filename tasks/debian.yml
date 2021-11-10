@@ -79,10 +79,10 @@
     name: procps
     install_recommends: false
 
-- name: Set vm.swappiness to 10 percent
+- name: Set vm.swappiness to 1 percent
   sysctl:
     name: vm.swappiness
-    value: "10"
+    value: "1"
     state: present
 
 - name: Increase local port range

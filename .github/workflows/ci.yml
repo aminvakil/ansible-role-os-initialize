@@ -43,7 +43,6 @@ jobs:
       matrix:
         include:
           - distro: rockylinux8
-          - distro: centos8
           - distro: centos7
           - distro: debian10
           - distro: debian11

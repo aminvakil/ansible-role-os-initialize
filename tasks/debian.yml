@@ -15,6 +15,12 @@
     state: absent
     purge: true
 
+- name: Ensure systemd-timesyncd is available on Debian 11
+  apt:
+    name: systemd-timesyncd
+    install_recommends: false
+  when: ansible_distribution_major_version == '11'
+
 - name: Enable systemd-timesyncd service
   systemd:
     name: systemd-timesyncd

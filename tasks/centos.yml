@@ -17,7 +17,8 @@
     path: /etc/cloud/cloud.cfg
   register: cloud_init_configured
 
-- block:
+- name: Change Hostname
+  block:
     - name: change hostname
       hostname:
         name: "{{ hostname }}"
@@ -40,7 +41,8 @@
         state: present
   when: not cloud_init_configured.stat.exists and (ansible_facts.virtualization_type not in ('docker', 'lxc', 'container', 'VirtualPC', 'containerd'))
 
-- block:
+- name: Enable SELinux
+  block:
     - name: Check SELinux status
       command: getenforce
       register: sestatus
@@ -105,7 +107,8 @@
     enabled: false
   loop: "{{ unnecessary_services | default([], true) }}"
 
-- block:
+- name: Install python SELinux stuff
+  block:
     - name: Install python3-libselinux
       yum:
         name: python3-libselinux

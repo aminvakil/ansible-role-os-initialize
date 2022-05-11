@@ -32,7 +32,8 @@
     path: /etc/cloud/cloud.cfg
   register: cloud_init_configured
 
-- block:
+- name: Change Hostname
+  block:
     - name: change hostname
       hostname:
         name: "{{ hostname }}"

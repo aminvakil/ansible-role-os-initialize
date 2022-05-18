@@ -4,12 +4,12 @@ galaxy_info:
   role_name: os_initialize
   description: Initialize CentOS & Debian
   license: GPL-3.0-only
-  min_ansible_version: 2.1
+  min_ansible_version: "2.1"
   platforms:
     - name: EL
       versions:
-        - 7
-        - 8
+        - "7"
+        - "8"
     - name: Debian
       versions:
         - buster

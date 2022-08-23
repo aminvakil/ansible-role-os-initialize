@@ -3,5 +3,6 @@ skip_list:
   - '403'  # Package installs should not use latest
   - '306'  # Shells that use pipes should set the pipefail option
   - fqcn-builtins
+  - name[casing]
 warn_list:
   - yaml

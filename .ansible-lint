@@ -4,5 +4,6 @@ skip_list:
   - '306'  # Shells that use pipes should set the pipefail option
   - fqcn-builtins
   - name[casing]
+  - jinja[spacing] # temporary, they're going to fix this in future releases
 warn_list:
   - yaml

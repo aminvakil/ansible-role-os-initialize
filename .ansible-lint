@@ -7,3 +7,4 @@ skip_list:
   - jinja[spacing] # temporary, they're going to fix this in future releases
 warn_list:
   - yaml
+  - key-order

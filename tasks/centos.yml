@@ -87,7 +87,8 @@
   when: ansible_distribution_major_version == '7'
 
 - name: Check if kernel has been updated
-  shell: if [ $(rpm -q kernel|tail -n 1) != kernel-$(uname -r) ]; then echo 'reboot'; else echo 'no'; fi
+  shell:
+    cmd: if [ $(rpm -q kernel|tail -n 1) != kernel-$(uname -r) ]; then echo 'reboot'; else echo 'no'; fi
   register: kernel_update
   changed_when: false
 

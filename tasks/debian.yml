@@ -26,6 +26,7 @@
     name: systemd-timesyncd
     state: started
     enabled: true
+  when: ansible_facts.virtualization_type not in ('docker', 'lxc', 'container', 'VirtualPC', 'containerd')
 
 - name: Check if cloud-init has configured system
   stat:

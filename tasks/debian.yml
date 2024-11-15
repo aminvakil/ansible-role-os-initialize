@@ -15,6 +15,12 @@
     state: absent
     purge: true
 
+- name: Uninstall chrony
+  apt:
+    name: chrony
+    state: absent
+    purge: true
+
 - name: Ensure systemd-timesyncd is available on Debian 11 and Debian 12
   apt:
     name: systemd-timesyncd

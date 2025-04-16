@@ -16,7 +16,7 @@ jobs:
 
   lint:
     name: Lint
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - name: Check out the codebase.
         uses: actions/checkout@main
@@ -38,7 +38,7 @@ jobs:
 
   molecule:
     name: Molecule
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         include:
@@ -70,7 +70,7 @@ jobs:
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     needs: [lint, molecule]
     name: Push to Galaxy
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - name: Check out the codebase.
         uses: actions/checkout@main

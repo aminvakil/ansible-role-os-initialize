@@ -44,6 +44,7 @@ jobs:
         include:
           - distro: debian11
           - distro: debian12
+          - distro: debian13
 
     steps:
       - name: Check out the codebase.

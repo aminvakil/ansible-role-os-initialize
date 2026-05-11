@@ -3,7 +3,7 @@
   apt:
     name: util-linux-extra
     install_recommends: false
-  when: ansible_distribution_major_version == '13'
+  when: ansible_facts["distribution_major_version"] == '13'
 
 - name: Set timezone to {{ timezone }}
   community.general.timezone:
@@ -31,14 +31,14 @@
   apt:
     name: systemd-timesyncd
     install_recommends: false
-  when: ansible_distribution_major_version == '11' or ansible_distribution_major_version == '12'
+  when: ansible_facts["distribution_major_version"] == '11' or ansible_facts["distribution_major_version"] == '12'
 
 - name: Enable systemd-timesyncd service
   systemd:
     name: systemd-timesyncd
     state: started
     enabled: true
-  when: ansible_facts.virtualization_type not in ('docker', 'lxc', 'container', 'VirtualPC', 'containerd')
+  when: ansible_facts["virtualization_type"] not in ('docker', 'lxc', 'container', 'VirtualPC', 'containerd')
 
 - name: Check if cloud-init has configured system
   stat:
@@ -57,7 +57,7 @@
         regexp: '^127\.0\.0\.1[ \t]+localhost'
         line: '127.0.0.1 localhost {{ hostname }}'
         state: present
-  when: not cloud_init_configured.stat.exists and (ansible_facts.virtualization_type not in ('docker', 'lxc', 'container', 'VirtualPC', 'containerd'))
+  when: not cloud_init_configured.stat.exists and (ansible_facts["virtualization_type"] not in ('docker', 'lxc', 'container', 'VirtualPC', 'containerd'))
 
 - name: Update every package
   apt:
@@ -68,7 +68,7 @@
   apt:
     name: qemu-guest-agent
   register: qa_installation
-  when: ansible_virtualization_role == 'guest' and (qemu_guest_agent | bool)
+  when: ansible_facts["virtualization_role"] == 'guest' and (qemu_guest_agent | bool)
   notify: reboot
 
 - name: Removing Debian 10 unneccessary packages
@@ -77,7 +77,7 @@
     state: absent
     autoremove: true
     purge: true
-  when: ansible_distribution_major_version == '10'
+  when: ansible_facts["distribution_major_version"] == '10'
 
 - name: check if reboot is required
   stat:

@@ -26,12 +26,12 @@
     - name: Install python3-libselinux
       yum:
         name: python3-libselinux
-      when: ansible_distribution_major_version == '8'
+      when: ansible_facts["distribution_major_version"] == '8'
 
     - name: Install libselinux-python
       yum:
         name: libselinux-python
-      when: ansible_distribution_major_version == '7'
+      when: ansible_facts["distribution_major_version"] == '7'
 
     - name: add hostname to /etc/hosts
       lineinfile:
@@ -39,7 +39,7 @@
         regexp: '^127\.0\.0\.1[ \t]+localhost'
         line: '127.0.0.1 localhost {{ hostname }}'
         state: present
-  when: not cloud_init_configured.stat.exists and (ansible_facts.virtualization_type not in ('docker', 'lxc', 'container', 'VirtualPC', 'containerd'))
+  when: not cloud_init_configured.stat.exists and (ansible_facts["virtualization_type"] not in ('docker', 'lxc', 'container', 'VirtualPC', 'containerd'))
 
 - name: Enable SELinux
   block:
@@ -65,7 +65,7 @@
       reboot:
         reboot_timeout: 600
       when: '"Disabled" in sestatus.stdout'
-  when: ansible_facts.virtualization_type not in ('docker', 'lxc', 'container', 'VirtualPC', 'containerd')
+  when: ansible_facts["virtualization_type"] not in ('docker', 'lxc', 'container', 'VirtualPC', 'containerd')
 
 - name: Update every package
   yum:
@@ -77,14 +77,14 @@
     name: "{{ centos8_unnecessary_packages }}"
     state: absent
     autoremove: true
-  when: ansible_distribution_major_version == '8'
+  when: ansible_facts["distribution_major_version"] == '8'
 
 - name: Removing CentOS 7 unneccessary packages
   yum:
     name: "{{ centos7_unnecessary_packages }}"
     state: absent
     autoremove: true
-  when: ansible_distribution_major_version == '7'
+  when: ansible_facts["distribution_major_version"] == '7'
 
 - name: Check if kernel has been updated
   shell:
@@ -113,13 +113,13 @@
     - name: Install python3-libselinux
       yum:
         name: python3-libselinux
-      when: ansible_distribution_major_version == '8'
+      when: ansible_facts["distribution_major_version"] == '8'
 
     - name: Install libselinux-python
       yum:
         name: libselinux-python
-      when: ansible_distribution_major_version == '7'
-  when: ansible_facts.virtualization_type not in ('docker', 'lxc', 'container', 'VirtualPC', 'containerd')
+      when: ansible_facts["distribution_major_version"] == '7'
+  when: ansible_facts["virtualization_type"] not in ('docker', 'lxc', 'container', 'VirtualPC', 'containerd')
 
 - name: Make sure procps-ng is present
   yum:

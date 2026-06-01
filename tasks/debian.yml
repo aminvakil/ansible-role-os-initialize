@@ -38,7 +38,7 @@
     state: absent
     purge: true
 
-- name: Ensure systemd-timesyncd is available on Debian 11 and Debian 12
+- name: Ensure systemd-timesyncd is available
   apt:
     name: systemd-timesyncd
     install_recommends: false

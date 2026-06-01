@@ -1,4 +1,15 @@
 ---
+- name: Check if apt update has ever been run
+  stat:
+    path: /var/lib/apt/lists/lock
+  register: apt_update_run
+
+- name: Run apt update on first boot
+  apt:
+    update_cache: true
+  when:
+    - 'not apt_update_run.stat.exists'
+
 - name: Ensure util-linux-extra is available on Debian 13
   apt:
     name: util-linux-extra

@@ -31,7 +31,6 @@
   apt:
     name: systemd-timesyncd
     install_recommends: false
-  when: ansible_facts["distribution_major_version"] == '11' or ansible_facts["distribution_major_version"] == '12'
 
 - name: Enable systemd-timesyncd service
   systemd:

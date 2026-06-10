@@ -12,7 +12,8 @@ galaxy_info:
         - "8"
     - name: Debian
       versions:
-        - buster
+        - bookworm
+        - trixie
 
 
   galaxy_tags:
